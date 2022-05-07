@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Bank.Service.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Bank.Service.Api.Controllers.AccountsController.GetId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Получение идентификатора пользователя по текущему jwt токену.
+            </summary>
+            <param name="userPrincipal"></param>
+            <returns>Идентификатор пользователя.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Controllers.OperationsController.GetHistoryOperations(System.Guid)">
+            <summary>
+            Получение списка операций.
+            </summary>
+            <param name="id">Идентификатор счёта.</param>
+            <returns>Список операций.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Controllers.OperationsController.PostBuyOperation(Bank.Service.Api.Dto.HistoryOperation.BuyOperation)">
+            <summary>
+            Post запрос для операции покупки.
+            </summary>
+            <param name="operation">Данные о операции.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bank.Service.Api.Controllers.OperationsController.GetId(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Получение идентификатора пользователя по текущему jwt токену.
+            </summary>
+            <param name="userPrincipal"></param>
+            <returns>Идентификатор пользователя.</returns>
+        </member>
+        <member name="F:Bank.Service.Api.Controllers.UsersController._repository">
+            <summary>
+            Операции над пользователем.
+            </summary>
+        </member>
+        <member name="M:Bank.Service.Api.Controllers.UsersController.GetUser">
+            <summary>
+            Получение информации о пользователе.
+            </summary>
+            <returns>Информация о найденом пользователе.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Controllers.UsersController.Registration(Bank.Service.Api.Dto.User.UserRegistration)">
+            <summary>
+            Регистрация пользователя.
+            </summary>
+            <param name="userCreate">Данные о пользователе.</param>
+            <returns>Данные о созданном пользователе.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Controllers.UsersController.Login(Bank.Service.Api.Dto.User.UserLogin)">
+            <summary>
+            Авторизация пользователя.
+            </summary>
+            <param name="user">Информация о входе пользователя.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Bank.Service.Api.Data.HistoryOperationRepository">
+            <summary>
+            Операции над операциями.
+            </summary>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.SaveChangesAsync">
+            <summary>
+            Сохранение данных в базу данных.
+            </summary>
+            <returns>Успешность сохранения данных.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.GetAllAsync">
+            <summary>
+            Получение списка всех операций по всем счетам.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.GetAllAsync(System.Guid)">
+            <summary>
+            Получение всех операций по идентификатору счёта.
+            </summary>
+            <param name="id">Идентификатор счёта.</param>
+            <returns>Список операций.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.GetByIdAsync(System.Guid)">
+            <summary>
+            Получение операции по идентификатору операции.
+            </summary>
+            <param name="id">Идентификатор операции.</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.CreateAsync(Bank.Service.Api.Models.HistoryOperation)">
+            <summary>
+            Создание операции.
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.HasAccount(System.Guid,System.Guid)">
+            <summary>
+            Проверка наличия акаунта у пользователя.
+            </summary>
+            <param name="userId">Идентификатор пользователя.</param>
+            <param name="accountId">Идентификатор счёта.</param>
+            <returns>Есть ли данный счёт у пользователя.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.HasCard(System.String,System.DateTime,System.Int32)">
+            <summary>
+            Проверка наличия заданного счёта.
+            </summary>
+            <param name="operationNumberCard">Номер карты.</param>
+            <param name="operationDataEnd">Дата окончания карты.</param>
+            <param name="operationCvc">Код карты.</param>
+            <returns>Существует данный счёт или нет.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.HistoryOperationRepository.GetEmail(System.String)">
+            <summary>
+            Получение Email адреса по номеру карты.
+            </summary>
+            <param name="numberCard">Номер карты.</param>
+            <returns>Email адрес пользователя.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.UserRepository.SetUserPasswordAsync(Bank.Service.Api.Models.User,System.String)">
+            <summary>
+            Хеширование пароля для пользователя.
+            </summary>
+            <param name="user">Пользователь.</param>
+            <param name="password">Пароль.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.UserRepository.VerifyPasswordHash(Bank.Service.Api.Models.User,System.String)">
+            <summary>
+            Проверка правильности введённого пароля для пользователя.
+            </summary>
+            <param name="user">Пользователь.</param>
+            <param name="password">Пароль.</param>
+            <returns>Соответсвие введённого пароля с паролем пользователя.</returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.UserRepository.CreateToken(Bank.Service.Api.Dto.User.UserLogin,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Создание JWT токена для пользователя.
+            </summary>
+            <param name="user"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bank.Service.Api.Data.UserRepository.AddNewDefaultAccountAsync(Bank.Service.Api.Models.User)">
+            <summary>
+            Добавление нового аккаунта для нового пользователя.
+            </summary>
+            <param name="user">Пользователь.</param>
+            <returns>Создание счёта пользователя.</returns>
+        </member>
+        <member name="T:Bank.Service.Api.Dto.Account.AccountRead">
+            <summary>
+            Данные, предназначенные для получения при Get запросах.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.Id">
+            <summary>
+            Идентификатор счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.UserId">
+            <summary>
+            Идентификатор клиента.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.NameAccount">
+            <summary>
+            Название счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.NumberAccount">
+            <summary>
+            Номер счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.NumberCard">
+            <summary>
+            Номер карты.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.DataEnd">
+            <summary>
+            Окончание дейсвия счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.Cvc">
+            <summary>
+            Код проверки подлинности карты.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.DataRegistration">
+            <summary>
+            Дата регистрации счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.Amount">
+            <summary>
+            Количество денег на счёте.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.Account.AccountRead.CurrencyType">
+            <summary>
+            Валюта счёта (810 - Рубли, 840 - Доллары, 978 - Евро).
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Dto.HistoryOperation.BuyOperation">
+            <summary>
+            Данные для покупки.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.BuyOperation.NumberCard">
+            <summary>
+            Номер карты.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.BuyOperation.DataEnd">
+            <summary>
+            Окончание дейсвия счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.BuyOperation.Cvc">
+            <summary>
+            Код проверки подлинности карты.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.BuyOperation.Amount">
+            <summary>
+            Количество денег.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.BuyOperation.NameOperation">
+            <summary>
+            Название операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.BuyOperation.Operation">
+            <summary>
+            Тип операции.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Dto.HistoryOperation.OperationRead">
+            <summary>
+            Данные о операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.Id">
+            <summary>
+            Идентификатор операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.AccountId">
+            <summary>
+            Идентификатор счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.Created">
+            <summary>
+            Дата операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.Amount">
+            <summary>
+            Количество денег.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.NameOperation">
+            <summary>
+            Название операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.Operation">
+            <summary>
+            Тип операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.HistoryOperation.OperationRead.ResultOperation">
+            <summary>
+            Результат операции.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Dto.User.UserLogin">
+            <summary>
+            Предназначен для данных при авторизации пользователя.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserLogin.Email">
+            <summary>
+            Email адрес.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserLogin.Password">
+            <summary>
+            Пароль пользователя.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRead.FirstName">
+            <summary>
+            Bvz.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Dto.User.UserRegistration">
+            <summary>
+            Данные пользователя при регистрации.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.FirstName">
+            <summary>
+            Имя пользователя.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.LastName">
+            <summary>
+            Фамилия пользователя.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.Patronymic">
+            <summary>
+            Отчество.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.Password">
+            <summary>
+            Пароль.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.Email">
+            <summary>
+            Email адрес.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.Phone">
+            <summary>
+            Номер телефона.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Dto.User.UserRegistration.Birthday">
+            <summary>
+            Дата рождения.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Enums.Currency">
+            <summary>
+            Валюта.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.Currency.Ruble">
+            <summary>
+            Рубли.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.Currency.Dollar">
+            <summary>
+            Доллары.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.Currency.Euro">
+            <summary>
+            Евро.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Enums.ResultOperation">
+            <summary>
+            Результат выполнения операции.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.ResultOperation.Success">
+            <summary>
+            Успешно.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.ResultOperation.Failure">
+            <summary>
+            Неудачно.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.ResultOperation.Expectation">
+            <summary>
+            Ожидание.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Enums.TypeOperation">
+            <summary>
+            Тип операции.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.TypeOperation.Replenishment">
+            <summary>
+            Пополнение.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.TypeOperation.Withdrawal">
+            <summary>
+            Снятие.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.TypeOperation.Transfer">
+            <summary>
+            Перевод.
+            </summary>
+        </member>
+        <member name="F:Bank.Service.Api.Enums.TypeOperation.Purchase">
+            <summary>
+            Покупка.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.Id">
+            <summary>
+            Идентификатор счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.UserId">
+            <summary>
+            Идентификатор клиента.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.NameAccount">
+            <summary>
+            Название счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.NumberAccount">
+            <summary>
+            Номер счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.NumberCard">
+            <summary>
+            Номер карты.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.DataEnd">
+            <summary>
+            Окончание дейсвия счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.Cvc">
+            <summary>
+            Код проверки подлинности карты.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.DataRegistration">
+            <summary>
+            Дата регистрации счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.Amount">
+            <summary>
+            Количество денег на счёте.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.Account.CurrencyType">
+            <summary>
+            Валюта счёта.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Models.HistoryOperation">
+            <summary>
+            Операция.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.Id">
+            <summary>
+            Идентификатор операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.AccountId">
+            <summary>
+            Идентификатор счёта.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.Created">
+            <summary>
+            Дата операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.Amount">
+            <summary>
+            Количество денег.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.NameOperation">
+            <summary>
+            Название операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.Operation">
+            <summary>
+            Тип операции.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.HistoryOperation.ResultOperation">
+            <summary>
+            Результат операции.
+            </summary>
+        </member>
+        <member name="T:Bank.Service.Api.Models.User">
+            <summary>
+            Пользователь.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.Id">
+            <summary>
+            Идентификатор пользователя.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.FirstName">
+            <summary>
+            Имя.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.LastName">
+            <summary>
+            Фамилия.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.Patronymic">
+            <summary>
+            Отчество.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.HashPassword">
+            <summary>
+            Пароль.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.Email">
+            <summary>
+            Email адрес.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.Phone">
+            <summary>
+            Номер телефона.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.Birthday">
+            <summary>
+            Дата рождения.
+            </summary>
+        </member>
+        <member name="P:Bank.Service.Api.Models.User.Age">
+            <summary>
+            Возраст.
+            </summary>
+        </member>
+    </members>
+</doc>
